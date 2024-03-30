@@ -24,7 +24,7 @@ function App() {
       // Make a request to the YouTube Data API to search for videos
 await axios.get('https://www.googleapis.com/youtube/v3/search', {
 params: {
-  key: 'AIzaSyDEN_IVN-rU1BWeKnHw_i9Ksh5KiKic-OI',
+  key: API_key,
   part: 'snippet',
   type: 'video',
   q: query , // Your search query
