@@ -1,15 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import './App.css';
 import Movie from './Components/Movie';
-import { AppContext } from './Context/AppContext';
 import axios from 'axios';
 import Spinner from './Components/Spinner'
-import YouTubeEmbed from './Components/YouTubeEmbed';
+
 
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 console.log('apikey',typeof(API_KEY),API_KEY)
-let key = "AIzaSyAUSrPhDZ7op2mFq3J5ujk4QGUAZe5kyng"
 
 function App() {
 
