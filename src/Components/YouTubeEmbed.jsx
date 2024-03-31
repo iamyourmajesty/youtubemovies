@@ -1,6 +1,6 @@
 import React from 'react';
 
-const YouTubeEmbed = ({ videoId = 'FRCmqzc_izg'}) => {
+const YouTubeEmbed = ({ videoId = 'MWQxBZs75K0'}) => {
   return (
     <div className='video-responsive'>
       <iframe
