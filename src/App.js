@@ -1,10 +1,7 @@
 import {  useEffect, useState } from 'react';
 import './App.css';
 import Movie from './Components/Movie';
-import axios from 'axios';
 import Spinner from './Components/Spinner'
-
-
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 console.log('apikey',typeof(API_KEY),API_KEY)
@@ -21,45 +18,35 @@ function App() {
   async function fetchDataa(query = 'SouthMovie')
   {
     setLoading(true)
-      // Make a request to the YouTube Data API to search for videos
-// await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
-// params: {
-//   key : `${API_KEY}`,
-//   part: 'snippet',
-//   type: 'video',
-//   q: query , // Your search query
-//   maxResults: 20, // Number of results you want to fetch
-//   order: 'viewCount', // Sort by view count
-//   videoDuration : 'long',
-// }
-// })
-// .then((response) => {
-// // Extract video IDs from the response
-
-// const videoIds = response.data.items.map((item) => item.id.videoId);
-fetch(`https://www.googleapis.com/youtube/v3/search?key==${API_KEY}&part=snippet&type=video&q=${query}&maxResults=20&order=viewCount&videoDuration=long`)
+      // Making a request to the YouTube Data API to search for videos
+fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&q=${query}&maxResults=20&order=viewCount&videoDuration=long`)
   .then(response => response.json())
   .then(data => {
     const videoIds = data.items.map(item => item.id.videoId);
     // lal ala lala
 
 
-// Create an array of video URLs based on the video IDs
+// Creating an array of video URLs based on the video IDs
 const videoUrls = videoIds.map((videoId) => `https://www.youtube.com/watch?v=${videoId}`);
 
-if(query === 'SouthMovie')
-setSouthMovieList(videoIds)
-else if(query === 'BhojpuriMovie')
+if(query === 'South Movie')
+{
+  setSouthMovieList(videoIds)
+  console.log(southMovieList)
+}
+else if(query === 'Bhojpuri Movie')
 setBhojpuriMovieList(videoIds)
-else if(query === 'BollywoodMovie')
+else if(query === 'Bollywood Movie')
 setBollywoodMoieList(videoIds)
-else if(query === 'HorrorMovie')
+else if(query === 'Horror Movie')
 setHorrorMoiveList(videoIds)
-else if(query === 'CommedyMovie')
+else if(query === 'Commedy Movie')
 setCommedyMovieList(videoIds)
 
 
-saveDatatomgd()
+
+console.log('videoids',videoIds)
+saveDatatomgd(query)
 // Output the list of video URLs
 //   console.log(videoUrls);
 })
@@ -120,21 +107,55 @@ catch(error)
 }
   }
 
-  function saveDatatomgd()
+  function saveDatatomgd(query)
   {
-    if(southMovieList.length !== 0 && bhojpurMovieList.length !==0 && bollywoodMovieList.length !== 0 && horrorMovieList.length !==0 && commedyMovieList !== 0) 
+//     console.log(query)
+//     if(query === 'South Movie')
+// {
+//   console.log(southMovieList.length)
+// }
+// else if(query === 'Bhojpuri Movie')
+// {
+//   console.log(bhojpurMovieList.length)
+// }
+// else if(query === 'Bollywood Movie')
+// {
+//   console.log(bollywoodMovieList.length)
+// }
+// else if(query === 'Horror Movie')
+// {
+//   console.log(horrorMovieList.length)
+// }
+// else if(query === 'Commedy Movie')
+// {
+//   console.log(commedyMovieList.length)
+// }
+let slength = southMovieList.length
+let blength = bhojpurMovieList.length
+let bollylength = bollywoodMovieList.length
+let hlength = horrorMovieList.length
+let clength = commedyMovieList.length
+if(slength !== 0 && blength !== 0 && bollylength !==0 && hlength !== 0 && clength !==0)
+console.log('list is full')
+
+    if(southMovieList.length !== 0 && bhojpurMovieList.length !== 0 && bollywoodMovieList.length !== 0 && horrorMovieList.length !== 0 && commedyMovieList.length !== 0) 
     {
+      console.log(
+        'going to post'
+      )
       postData();
+      
     }
+    
 
   }
   
   useEffect( () => {
-   fetchDataa('SouthMovie')
-   fetchDataa('BhojpuriMovie')
-   fetchDataa('BollywoodMovie')
-    fetchDataa('HorrorMovie')
-    fetchDataa('CommedyMovie')
+   fetchDataa('South Movie')
+   fetchDataa('Bhojpuri Movie')
+   fetchDataa('Bollywood Movie')
+    fetchDataa('Horror Movie')
+    fetchDataa('Commedy Movie')
   },[])
 
   return (
@@ -159,7 +180,11 @@ catch(error)
       loading ? (<Spinner/>)
       : (<Movie  videoIdList={horrorMovieList }/>)
     }
-    
+    <h1 className=' text-2xl md:text-4xl font-bold relative'>Commedy Movies</h1>
+    {
+      loading ? (<Spinner/>)
+      : (<Movie  videoIdList={commedyMovieList }/>)
+    }
     </div>
   );
 }
