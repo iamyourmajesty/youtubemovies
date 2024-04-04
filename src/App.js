@@ -4,8 +4,6 @@ import Movie from './Components/Movie';
 import Spinner from './Components/Spinner'
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-console.log('apikey',typeof(API_KEY),API_KEY)
-
 function App() {
 
   const [loading ,setLoading] = useState(false)
