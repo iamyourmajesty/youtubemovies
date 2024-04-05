@@ -5,6 +5,10 @@ import Movie from '../Components/Movie'
 
 const SouthMoviePage = () => {
   const {loading,southMovieList} = useContext(AppContext)
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[])
   return (
     <div>
       {
