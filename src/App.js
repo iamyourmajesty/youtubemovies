@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="App">
 
-    <div className=' '> <Navbar/> </div>
+    <div className=' sticky -top-1 z-20 p-1 bg-white'> <Navbar/> </div>
 
 
     <Routes>
