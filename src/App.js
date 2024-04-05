@@ -1,12 +1,13 @@
 import {  useContext, useEffect, useState } from 'react';
 import './App.css';
-import {Route, Routes, useLocation,  useSearchParams, NavLink } from 'react-router-dom';
+import {Route, Routes, useLocation,  useSearchParams } from 'react-router-dom';
 import SouthMoviePage from './Pages/SouthMoviePage'
 import BollyWoodMoviePage from './Pages/BollywoodMoviesPage'
 import BhojpuriMoviePage from './Pages/BhojpuriMoviesPage'
 import CommedyMoviePage from './Pages/CommedyMoviesPage'
 import HorrorMoviePage from './Pages/HorrorMoviesPage'
 import { AppContext } from './Context/AppContext';
+import Navbar from './Components/Navbar';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 function App() {
@@ -45,15 +46,9 @@ function App() {
   },[])
 
   return (
-    <div className="App overflow-hidden">
+    <div className="App">
 
-    <div className=' md:text-xl lg:text-2xl flex gap-1 md:gap-2 lg:gap-4 my-3 justify-center self-start '> 
-    <NavLink to='/south' className=' rounded bg-[#2222] text-[#222] px-1 border shadow-lg cursor-pointer hover:bg-[#2222220b] '  >South</NavLink> 
-    <NavLink to='/bollywood' className=' rounded bg-[#2222] text-[#222] px-1 border shadow-lg cursor-pointer hover:bg-[#2222220b] ' >Bollywood</NavLink> 
-    <NavLink to='/bhojpuri' className=' rounded bg-[#2222] text-[#222] px-1 border shadow-lg cursor-pointer hover:bg-[#2222220b] '  >Bhojpuri</NavLink> 
-    <NavLink to='/horror' className=' rounded bg-[#2222] text-[#222] px-1 border shadow-lg cursor-pointer hover:bg-[#2222220b] '  >Horror</NavLink> 
-    <NavLink to='/commedy' className=' rounded bg-[#2222] text-[#222] px-1 border shadow-lg cursor-pointer hover:bg-[#2222220b]  ' >Commedy</NavLink> 
-    </div>
+    <div className=' '> <Navbar/> </div>
 
 
     <Routes>
