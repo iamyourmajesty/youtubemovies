@@ -3,6 +3,7 @@ import { AppContext } from '../Context/AppContext'
 import Spinner from '../Components/Spinner'
 import Movie from '../Components/Movie'
 import Paggination from '../Components/Paggination'
+
 const HorrorMoviesPage = () => {
   const {loading,horrorMovieList,fetchDataa,setCurrentCategory} = useContext(AppContext)
   useEffect(() => {
@@ -10,6 +11,11 @@ const HorrorMoviesPage = () => {
     fetchDataa('Horror Movie')
     window.scrollTo(0,0);
   },[])
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[horrorMovieList])
+
   return (
     <div>
     {

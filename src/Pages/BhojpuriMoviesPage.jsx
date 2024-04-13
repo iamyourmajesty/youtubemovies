@@ -12,6 +12,11 @@ const BhojpuriMoviesPage = () => {
     fetchDataa('Bhojpuri Movie')
     window.scrollTo(0,0);
   },[])
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[bhojpurMovieList])
+
   return (
     <div>
       {

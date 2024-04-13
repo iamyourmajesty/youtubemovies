@@ -11,6 +11,12 @@ const CommedyMoviesPage = () => {
     fetchDataa('Commedy Movie')
     window.scrollTo(0,0);
   },[])
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[commedyMovieList])
+
+  
   return (
     <div>
       {

@@ -10,6 +10,11 @@ const BollywoodMoviesPage = () => {
     fetchDataa('Bollywood Movie')
     window.scrollTo(0,0);
   },[])
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  },[bollywoodMovieList])
+
   return (
     <div>
       {
