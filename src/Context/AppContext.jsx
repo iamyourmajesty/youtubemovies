@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import axios from 'axios'
 
 export const AppContext = createContext()
 
@@ -14,20 +13,36 @@ const [southMovieList,setSouthMovieList] = useState([])
   const [bhojpurMovieList,setBhojpuriMovieList] = useState([])
   const [horrorMovieList,setHorrorMoiveList] = useState([])
   const [commedyMovieList,setCommedyMovieList] = useState([])
+  const [prevPageToken,setPrevPageToken] = useState(null);
+  const [nextPageToken,setNextPageToken] = useState(null); 
+  const [currentCategory,setCurrentCategory] = useState('South Movie')
 
-async function fetchDataa(query = 'SouthMovie')
+
+async function fetchDataa(query = 'SouthMovie',pageToken = '')
   {
     setLoading(true)
       // Making a request to the YouTube Data API to search for videos
-fetch(`https://www.googleapis.com/youtube/v3/search?key==${API_KEY}&part=snippet&type=video&q=${query}&maxResults=20&order=viewCount&videoDuration=long`)
+      let newUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&q=${query}&maxResults=20&order=viewCount&videoDuration=long`;
+      if(pageToken !== '')
+      {
+        newUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&q=${query}&maxResults=20&order=viewCount&videoDuration=long&pageToken=${pageToken}`
+      }
+
+fetch(newUrl)
   .then(response => response.json())
   .then(data => {
     const videoIds = data.items.map(item => item.id.videoId);
     // lal ala lala
 
+    // console.log(data);
+
+    if(data.nextPageToken)
+    setNextPageToken(data.nextPageToken);
+    if(data.prevPageToken)
+    setPrevPageToken(data.prevPageToken)
 
 // Creating an array of video URLs based on the video IDs
-const videoUrls = videoIds.map((videoId) => `https://www.youtube.com/watch?v=${videoId}`);
+// const videoUrls = videoIds.map((videoId) => `https://www.youtube.com/watch?v=${videoId}`);
 
 if(query === 'South Movie')
 {
@@ -46,12 +61,12 @@ setCommedyMovieList(videoIds)
 
 
 console.log('videoids',videoIds)
-saveDatatomgd(query)
+// saveDatatomgd(query)
 // Output the list of video URLs
 //   console.log(videoUrls);
 })
 .catch((error) => {
-  getdatafrommdb()
+  // getdatafrommdb()
 console.error('Error fetching videos:', error);
 return null
 });
@@ -138,6 +153,10 @@ console.log('list is full')
       commedyMovieList,
       horrorMovieList,
       fetchDataa,
+      prevPageToken,
+      nextPageToken,
+      currentCategory,
+      setCurrentCategory,
       
         
     }

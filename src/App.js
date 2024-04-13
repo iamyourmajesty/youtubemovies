@@ -37,13 +37,13 @@ function App() {
 
   
   
-  useEffect( () => {
-   fetchDataa('South Movie')
-   fetchDataa('Bhojpuri Movie')
-   fetchDataa('Bollywood Movie')
-    fetchDataa('Horror Movie')
-    fetchDataa('Commedy Movie')
-  },[])
+  // useEffect( () => {
+  //  fetchDataa('South Movie')
+  //  fetchDataa('Bhojpuri Movie')
+  //  fetchDataa('Bollywood Movie')
+  //   fetchDataa('Horror Movie')
+  //   fetchDataa('Commedy Movie')
+  // },[])
 
   return (
     <div className="App">
