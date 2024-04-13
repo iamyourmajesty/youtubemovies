@@ -27,6 +27,10 @@ async function fetchDataa(query = 'SouthMovie',pageToken = '')
       {
         newUrl = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&q=${query}&maxResults=20&order=viewCount&videoDuration=long&pageToken=${pageToken}`
       }
+      else{
+        setNextPageToken(null)
+        setPrevPageToken(null)
+      }
 
 fetch(newUrl)
   .then(response => response.json())
